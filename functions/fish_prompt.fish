@@ -1,5 +1,10 @@
 function fish_prompt --description 'Write out the prompt'
-	set -l last_status $status
+	# virtualenv
+    if set -q VIRTUAL_ENV
+        echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+    end
+	
+    set -l last_status $status
 
 	# Just calculate this once, to save a few cycles when displaying the prompt
 	if not set -q __fish_prompt_hostname
